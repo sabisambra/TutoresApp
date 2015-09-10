@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">TutoriasApp</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_ver_tutores">verTutores</string>
+
+    <string-array name="materias">
+        <item>Algoritmica y Programacion de Objetos 1</item>
+        <item>Algoritmica y Programacion de Objetos 2</item>
+        <item>Sistema Apoyo a la Decision</item>
+        <item>Principios de Optimizacion</item>
+        <item>Probabilidad y Estadistica 1</item>
+        <item>Modelos Probabilisticos</item>
+        <item>Calculo Diferencial</item>
+        <item>Calculo Integral</item>
+        <item>Calculo Vectorial</item>
+        <item>Algebra Lineal</item>
+        <item>Fisica 1</item>
+        <item>Fisica 2</item>
+    </string-array>
+
+    <string-array name="dias">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+        <item>Jueves</item>
+        <item>Viernes</item>
+        <item>Sabado</item>
+        <item>Domingo</item>
+    </string-array>
+
+    <string-array name="horas">
+        <item>7:00</item>
+        <item>7:30</item>
+        <item>8:00</item>
+        <item>8:30</item>
+        <item>9:00</item>
+        <item>9:30</item>
+        <item>10:00</item>
+        <item>10:30</item>
+        <item>11:00</item>
+        <item>11:30</item>
+        <item>12:00</item>
+        <item>12:30</item>
+        <item>1:00</item>
+        <item>1:30</item>
+        <item>2:00</item>
+        <item>2:30</item>
+        <item>3:00</item>
+        <item>3:30</item>
+        <item>4:00</item>
+        <item>4:30</item>
+        <item>5:00</item>
+        <item>5:30</item>
+        <item>6:00</item>
+    </string-array>
+</resources>
