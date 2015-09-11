@@ -1,9 +1,12 @@
 package proyecto_moviles.tutoriasapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Spinner;
 
 public class MainActivity extends Activity {
 
@@ -33,5 +36,16 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void mostrarMonitores(View v)
+    {
+        Spinner spinnerMateria = (Spinner)findViewById(R.id.spinnerMaterias);
+        String materia = spinnerMateria.getSelectedItem().toString();
+        Intent intent = new Intent(this,verTutores.class);
+        intent.putExtra("Materia",materia);
+        Spinner spinnerDia = (Spinner) findViewById(R.id.spinnerDia);
+        String dia = 
+        startActivity(intent);
     }
 }

@@ -21,6 +21,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/materias"
+        android:id="@+id/spinnerMaterias"
         />
 
     <TextView android:text="Selecciona el día en el que quieres tomar la tutoria"
@@ -32,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/dias"
+        android:id="@+id/spinnerDia"
         />
 
     <TextView android:text="Selecciona la hora en el que quieres tomar la tutoria"
@@ -43,11 +45,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/horas"
+        android:id="@+id/spinnerHoras"
         />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar Monitor"/>
+        android:text="Buscar Monitor"
+        android:onClick="mostrarMonitores"/>
 
 </LinearLayout>
