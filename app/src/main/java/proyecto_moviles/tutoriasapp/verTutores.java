@@ -18,6 +18,8 @@ public class verTutores extends Activity {
         String materia = i.getStringExtra("Materia");
         String dia = i.getStringExtra("Dia");
         String hora = i.getStringExtra("Hora");
+        TextView texto = (TextView) findViewById(R.id.texto);
+        texto.setText(materia + "\n" + dia + "\n" + hora);
 
     }
 

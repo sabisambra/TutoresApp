@@ -43,9 +43,13 @@ public class MainActivity extends Activity {
         Spinner spinnerMateria = (Spinner)findViewById(R.id.spinnerMaterias);
         String materia = spinnerMateria.getSelectedItem().toString();
         Intent intent = new Intent(this,verTutores.class);
-        intent.putExtra("Materia",materia);
+        intent.putExtra("Materia", materia);
         Spinner spinnerDia = (Spinner) findViewById(R.id.spinnerDia);
-        String dia = 
+        String dia = spinnerDia.getSelectedItem().toString();
+        intent.putExtra("Dia", dia);
+        Spinner spinnerHora = (Spinner) findViewById(R.id.spinnerHoras);
+        String hora = spinnerHora.getSelectedItem().toString();
+        intent.putExtra("Hora",hora);
         startActivity(intent);
     }
 }
