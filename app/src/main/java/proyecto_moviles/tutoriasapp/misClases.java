@@ -1,34 +1,22 @@
 package proyecto_moviles.tutoriasapp;
 
-
-import android.app.ActionBar;
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-public class verTutores extends ActionBarActivity {
+public class misClases extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ver_tutores);
-        Intent i = getIntent();
-        String materia = i.getStringExtra("Materia");
-        String dia = i.getStringExtra("Dia");
-        String hora = i.getStringExtra("Hora");
-        TextView texto = (TextView) findViewById(R.id.texto);
-        texto.setText(materia + "\n" + dia + "\n" + hora);
-
+        setContentView(R.layout.activity_mis_clases);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_ver_tutores, menu);
+        getMenuInflater().inflate(R.menu.menu_mis_clases, menu);
         return true;
     }
 

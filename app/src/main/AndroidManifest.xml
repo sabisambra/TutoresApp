@@ -20,6 +20,10 @@
             android:name=".verTutores"
             android:label="@string/title_activity_ver_tutores" >
         </activity>
+        <activity
+            android:name=".misClases"
+            android:label="@string/title_activity_mis_clases" >
+        </activity>
     </application>
 
 </manifest>

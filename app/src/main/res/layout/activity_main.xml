@@ -51,7 +51,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Buscar Monitor"
-        android:onClick="mostrarMonitores"/>
+        android:text="Buscar Tutor"
+        android:onClick="mostrarTutores"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mis Clases"
+        android:onClick="misClases"/>
 
 </LinearLayout>

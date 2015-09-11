@@ -3,12 +3,13 @@ package proyecto_moviles.tutoriasapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Spinner;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void mostrarMonitores(View v)
+    public void mostrarTutores(View v)
     {
         Spinner spinnerMateria = (Spinner)findViewById(R.id.spinnerMaterias);
         String materia = spinnerMateria.getSelectedItem().toString();
@@ -50,6 +51,12 @@ public class MainActivity extends Activity {
         Spinner spinnerHora = (Spinner) findViewById(R.id.spinnerHoras);
         String hora = spinnerHora.getSelectedItem().toString();
         intent.putExtra("Hora",hora);
+        startActivity(intent);
+    }
+
+    public void misClases(View v)
+    {
+        Intent intent = new Intent(this,misClases.class);
         startActivity(intent);
     }
 }
