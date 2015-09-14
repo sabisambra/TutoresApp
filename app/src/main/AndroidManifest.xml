@@ -19,10 +19,16 @@
         <activity
             android:name=".verTutores"
             android:label="@string/title_activity_ver_tutores" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".misClases"
             android:label="@string/title_activity_mis_clases" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
     </application>
 

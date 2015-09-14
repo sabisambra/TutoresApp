@@ -22,6 +22,7 @@ public class verTutores extends ActionBarActivity {
         String hora = i.getStringExtra("Hora");
         TextView texto = (TextView) findViewById(R.id.texto);
         texto.setText(materia + "\n" + dia + "\n" + hora);
+        setTitle("Tutores");
 
     }
 

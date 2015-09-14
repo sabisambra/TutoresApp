@@ -11,6 +11,7 @@ public class misClases extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mis_clases);
+        setTitle("Mis Clases");
     }
 
     @Override
