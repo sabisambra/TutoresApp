@@ -5,12 +5,18 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Contacts;
+import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 public class verTutores extends ActionBarActivity {
+
+
+    private final int CONTACT_PICKER_RESULT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,5 +52,16 @@ public class verTutores extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void abrirContactos(View v)
+    {
+        Intent contentPickerIntent = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        startActivityForResult(contentPickerIntent,CONTACT_PICKER_RESULT);
+    }
+
+    public void onActivityResult(int reqCode, int resultCode, Intent data)
+    {
+
     }
 }
