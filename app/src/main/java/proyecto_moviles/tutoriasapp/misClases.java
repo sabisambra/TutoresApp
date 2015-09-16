@@ -1,5 +1,6 @@
 package proyecto_moviles.tutoriasapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -31,6 +32,11 @@ public class misClases extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        if(id == R.id.action_acerca_de)
+        {
+            Intent intent = new Intent(this,AcercaDe.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
