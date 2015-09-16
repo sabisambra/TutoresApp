@@ -59,4 +59,10 @@ public class MainActivity extends ActionBarActivity {
         Intent intent = new Intent(this,misClases.class);
         startActivity(intent);
     }
+
+    public void mostrarAcercaDe(View v)
+    {
+        Intent intent = new Intent(this,AcercaDe.class);
+        startActivity(intent);
+    }
 }

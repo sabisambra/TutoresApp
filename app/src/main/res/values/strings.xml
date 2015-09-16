@@ -56,4 +56,5 @@
         <item>6:00</item>
     </string-array>
     <string name="title_activity_mis_clases">misClases</string>
+    <string name="title_activity_acerca_de">AcercaDe</string>
 </resources>
