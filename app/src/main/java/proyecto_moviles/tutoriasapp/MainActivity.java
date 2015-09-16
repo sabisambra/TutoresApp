@@ -35,6 +35,11 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if(id == R.id.action_acerca_de)
+        {
+            Intent intent = new Intent(this,AcercaDe.class);
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -57,12 +62,6 @@ public class MainActivity extends ActionBarActivity {
     public void misClases(View v)
     {
         Intent intent = new Intent(this,misClases.class);
-        startActivity(intent);
-    }
-
-    public void mostrarAcercaDe(View v)
-    {
-        Intent intent = new Intent(this,AcercaDe.class);
         startActivity(intent);
     }
 }
