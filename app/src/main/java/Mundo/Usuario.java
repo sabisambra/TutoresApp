@@ -27,15 +27,21 @@ public class Usuario
     private int telefono;
 
     /**
+     * La clave del usuario
+     */
+    private String contrasenia;
+
+    /**
      * Constructor
      * @param nombreP el nombre del usuario
      * @param telefonoP el telefono del usuario
      */
-    public Usuario(String nombreP, int telefonoP)
+    public Usuario(String nombreP, int telefonoP, String clave)
     {
         nombre = nombreP;
         telefono = telefonoP;
         materias = new ArrayList<>();
+        contrasenia = clave;
     }
 
     /**
@@ -62,6 +68,22 @@ public class Usuario
     public void cambiarNombre(String nombreP)
     {
         nombre = nombreP;
+    }
+
+    /**
+     * Metodo uqe elimina una materia de la lista
+     * @param materiaEliminar el nombre de la materia a eliminar
+     */
+    public void eliminarMateria(String materiaEliminar)
+    {
+        for(int i=0;i<materias.size();i++)
+        {
+            String materiaActual = materias.get(i);
+            if(materiaActual.equals(materiaEliminar))
+            {
+                materias.remove(i);
+            }
+        }
     }
 
     /**
@@ -98,5 +120,23 @@ public class Usuario
     {
         telefono = telefonoP;
     }
-    
+
+    /**
+     * Metodo que retorna la clave del usuario
+     * @return la clave del usuario
+     */
+    public String darClave()
+    {
+        return contrasenia;
+    }
+
+    /**
+     * Metodo que cambia la clave del usuario por la clave dada por parametro
+     * @param clave
+     */
+    public void cambiarClave(String clave)
+    {
+        contrasenia = clave;
+    }
+
 }

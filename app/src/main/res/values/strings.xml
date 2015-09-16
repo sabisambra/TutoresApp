@@ -4,6 +4,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_ver_tutores">verTutores</string>
+    <string name="title_activity_mis_clases">misClases</string>
+    <string name="title_activity_acerca_de">Acerca De</string>
 
     <string-array name="materias">
         <item>Algoritmica y Programacion de Objetos 1</item>
@@ -55,6 +57,6 @@
         <item>5:30</item>
         <item>6:00</item>
     </string-array>
-    <string name="title_activity_mis_clases">misClases</string>
-    <string name="title_activity_acerca_de">AcercaDe</string>
+    <string name="title_activity_inicio">Inicio</string>
+
 </resources>
