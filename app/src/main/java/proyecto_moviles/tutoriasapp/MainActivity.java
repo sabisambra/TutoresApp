@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
@@ -15,6 +16,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Intent i = getIntent();
+        //Bundle bundle = i.getExtras();
+        //String usuario = bundle.getString("Nombre");
+        TextView texto = (TextView)findViewById(R.id.textoBienvenida);
+        //texto.setText("Bienvenido " + usuario);
     }
 
     @Override

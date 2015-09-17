@@ -1,16 +1,24 @@
 package proyecto_moviles.tutoriasapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import Mundo.DBHelper;
 
 public class Registro extends ActionBarActivity {
+
+    private DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+        Intent i = getIntent();
+        db = (DBHelper) i.getSerializableExtra("datos");
     }
 
     @Override
@@ -33,5 +41,11 @@ public class Registro extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void realizarRegistro(View v)
+    {
+        Intent intent = new Intent(this,Inicio.class);
+        startActivity(intent);
     }
 }

@@ -10,7 +10,8 @@
     <TextView android:text="Bienvenido a TutoriasApp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="26dp"/>
+        android:textSize="26dp"
+        android:id="@+id/textoBienvenida"/>
 
     <TextView android:text="Selecciona la materia de la cual quiere una tutoria"
         android:layout_width="match_parent"
