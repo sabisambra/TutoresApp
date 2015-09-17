@@ -59,6 +59,7 @@ public class verTutores extends ActionBarActivity {
         cursor.close();
         datos.close();
         texto.setText(materia + "\n" + dia + "\n" + hora + "\n" + "La busqueda dio como respuesta " + tutores.size());
+        texto.setText("");
         mList = (ListView)findViewById(R.id.tutores);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.lista_item,R.id.label,tutores);
         mList.setAdapter(adapter);

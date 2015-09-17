@@ -1,23 +1,46 @@
 package proyecto_moviles.tutoriasapp;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
+import Mundo.DBHelper;
+import Mundo.Usuario;
+
 public class InfoTutor extends ActionBarActivity {
+
+    private Usuario actual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_tutor);
-        TextView temp = (TextView)findViewById(R.id.nombreTutor);
         Intent i = getIntent();
         String nombreUsuario = i.getStringExtra("Nombre");
-        String nombreTutor = i.getStringExtra("Tutor"); 
-        temp.setText(nombreUsuario);
+        actual = new Usuario();
+        actual.cambiarNombre(nombreUsuario);
+        String nombreTutor = i.getStringExtra("Tutor");
+        TextView nombreTutorText = (TextView)findViewById(R.id.nombreTutor);
+        TextView telefonoTutorText = (TextView)findViewById(R.id.telefonoTutor);
+        DBHelper db = new DBHelper(this);
+        SQLiteDatabase datos = db.getReadableDatabase();
+        String busqueda = "SELECT * FROM USUARIOS WHERE nombre='" + nombreTutor + "'";
+        Cursor cursor = datos.rawQuery(busqueda,null);
+        if(cursor.moveToFirst())
+        {
+            String nombreTutorQuery = cursor.getString(cursor.getColumnIndex("nombre"));
+            String telefonoQuery = cursor.getString(cursor.getColumnIndex("telefono"));
+            nombreTutorText.setText(nombreTutorQuery);
+            telefonoTutorText.setText(telefonoQuery);
+        }
+        cursor.close();
+        datos.close();
     }
 
     @Override
@@ -40,5 +63,12 @@ public class InfoTutor extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void enviarMensaje(View v)
+    {
+        Intent intent = new Intent(this,MainActivity.class);
+        intent.putExtra("Nombre",actual.darNombre());
+        startActivity(intent);
     }
 }

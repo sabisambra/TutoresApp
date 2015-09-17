@@ -9,9 +9,41 @@
     android:orientation="vertical"
     tools:context="proyecto_moviles.tutoriasapp.InfoTutor">
 
+    <TextView android:text="Nombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
     <TextView android:text="@string/hello_world"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/nombreTutor"/>
+
+    <TextView android:text="Telefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <TextView android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/telefonoTutor"/>
+
+    <TextView android:text="Escribe el mensaje"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mensajeTexto"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enviar Mensaje"
+        android:onClick="enviarMensaje"/>
+
 
 </LinearLayout>
