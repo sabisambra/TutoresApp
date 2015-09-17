@@ -44,6 +44,10 @@
             android:name=".Registro"
             android:label="@string/title_activity_registro" >
         </activity>
+        <activity
+            android:name=".AgregarMateria"
+            android:label="@string/title_activity_agregar_materia" >
+        </activity>
     </application>
 
 </manifest>

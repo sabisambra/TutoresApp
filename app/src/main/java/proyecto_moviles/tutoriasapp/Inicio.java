@@ -28,12 +28,6 @@ public class Inicio extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
         db = new DBHelper(this);
-        SQLiteDatabase datos = db.getWritableDatabase();
-        ContentValues valores = new ContentValues();
-        valores.put("nombre","Pablo");
-        valores.put("clave","hola123");
-        valores.put("telefono",1234567);
-        datos.insert("USUARIOS",null,valores);
     }
 
     @Override
@@ -86,10 +80,5 @@ public class Inicio extends Activity {
     {
         Intent intent = new Intent(this,Registro.class);
         startActivity(intent);
-    }
-
-    public DBHelper darDB()
-    {
-        return  db;
     }
 }

@@ -9,9 +9,11 @@
     android:orientation="vertical"
     tools:context="proyecto_moviles.tutoriasapp.misClases">
 
-    <TextView android:text="@string/hello_world"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar Materia"
+        android:onClick="agregarMateria"/>
 
 
 

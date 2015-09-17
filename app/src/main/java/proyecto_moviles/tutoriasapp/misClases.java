@@ -1,18 +1,31 @@
 package proyecto_moviles.tutoriasapp;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import Mundo.DBHelper;
+import Mundo.Usuario;
 
 public class misClases extends ActionBarActivity {
+
+    private Usuario actual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mis_clases);
         setTitle("Mis Clases");
+        Intent i = getIntent();
+        String nombre = i.getStringExtra("Nombre");
+        actual = new Usuario();
+        actual.cambiarNombre(nombre);
+        DBHelper db = new DBHelper(this);
+        SQLiteDatabase datos = db.getReadableDatabase();
     }
 
     @Override
@@ -40,5 +53,12 @@ public class misClases extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void agregarMateria(View v)
+    {
+        Intent intent = new Intent(this,AgregarMateria.class);
+        intent.putExtra("Nombre",actual.darNombre());
+        startActivity(intent);
     }
 }

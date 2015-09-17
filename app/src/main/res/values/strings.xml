@@ -59,5 +59,6 @@
     </string-array>
     <string name="title_activity_inicio">Inicio</string>
     <string name="title_activity_registro">Registro</string>
+    <string name="title_activity_agregar_materia">AgregarMateria</string>
 
 </resources>

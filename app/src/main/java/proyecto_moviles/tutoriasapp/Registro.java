@@ -1,11 +1,15 @@
 package proyecto_moviles.tutoriasapp;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
 import Mundo.DBHelper;
 
@@ -17,8 +21,6 @@ public class Registro extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
-        Intent i = getIntent();
-        db = (DBHelper) i.getSerializableExtra("datos");
     }
 
     @Override
@@ -46,6 +48,25 @@ public class Registro extends ActionBarActivity {
     public void realizarRegistro(View v)
     {
         Intent intent = new Intent(this,Inicio.class);
+        EditText nombreText = (EditText) findViewById(R.id.nombreRegistro);
+        EditText claveText = (EditText) findViewById(R.id.claveRegistro);
+        EditText telefonoText = (EditText) findViewById(R.id.telefonoRegistro);
+        String nombre = nombreText.getText().toString();
+        String clave = claveText.getText().toString();
+        int telefono = Integer.parseInt(telefonoText.getText().toString());
+        DBHelper db = new DBHelper(this);
+        SQLiteDatabase datos = db.getReadableDatabase();
+        String consultaExistencia = "SELECT * FROM USUARIOS WHERE nombre='" + nombre +"'";
+        Cursor cursor = datos.rawQuery(consultaExistencia,null);
+        if(!cursor.moveToFirst())
+        {
+            datos = db.getWritableDatabase();
+            ContentValues valores = new ContentValues();
+            valores.put("nombre",nombre);
+            valores.put("clave",clave);
+            valores.put("telefono",telefono);
+            datos.insert("USUARIOS",null,valores);
+        }
         startActivity(intent);
     }
 }
