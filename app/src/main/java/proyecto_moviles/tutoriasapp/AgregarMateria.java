@@ -56,7 +56,7 @@ public class AgregarMateria extends ActionBarActivity {
         SQLiteDatabase datos = db.getReadableDatabase();
         Spinner materiaSelec = (Spinner)findViewById(R.id.spinnerAgregarMaterias);
         String materia = materiaSelec.getSelectedItem().toString();
-        String consultaExistencia = "SELECT * FROM MATERIAS WHERE nombre='" + actual.darNombre() + "' && materia='" + materia + "'";
+        String consultaExistencia = "SELECT * FROM MATERIAS WHERE usuario='" + actual.darNombre() + "' AND materia='" + materia + "'";
         Cursor cursor = datos.rawQuery(consultaExistencia,null);
         if(!cursor.moveToFirst())
         {
@@ -68,6 +68,7 @@ public class AgregarMateria extends ActionBarActivity {
         }
         datos.close();
         Intent intent = new Intent(this,misClases.class);
+        intent.putExtra("Nombre",actual.darNombre());
         startActivity(intent);
     }
 }

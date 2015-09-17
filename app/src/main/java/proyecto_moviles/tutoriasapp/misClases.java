@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -30,10 +31,18 @@ public class misClases extends ActionBarActivity {
         DBHelper db = new DBHelper(this);
         SQLiteDatabase datos = db.getReadableDatabase();
         ArrayList<String> materias = new ArrayList<String>();
-        String consultaMaterias = "SELECT * FROM MATERIAS WHERE nombre='" + actual.darNombre() + "'";
+        String consultaMaterias = "SELECT * FROM MATERIAS WHERE usuario='" + actual.darNombre() + "'";
         Cursor cursor = datos.rawQuery(consultaMaterias,null);
-        
+        if(cursor.moveToFirst())
+        {
+            do{
+                String materiaNueva = cursor.getString(cursor.getColumnIndex("materia"));
+                materias.add(materiaNueva);
+            }while(cursor.moveToNext());
+        }
         datos.close();
+        TextView temp = (TextView) findViewById(R.id.temporal);
+        temp.setText("La cantidad de materias es: " + materias.size());
     }
 
     @Override
