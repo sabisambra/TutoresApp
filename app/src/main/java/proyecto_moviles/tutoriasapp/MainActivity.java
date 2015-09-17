@@ -2,25 +2,28 @@ package proyecto_moviles.tutoriasapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import Mundo.DBHelper;
+import Mundo.Usuario;
+
 public class MainActivity extends ActionBarActivity {
+
+    private Usuario actual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Intent i = getIntent();
-        //Bundle bundle = i.getExtras();
-        //String usuario = bundle.getString("Nombre");
-        TextView texto = (TextView)findViewById(R.id.textoBienvenida);
-        //texto.setText("Bienvenido " + usuario);
     }
 
     @Override
@@ -68,6 +71,7 @@ public class MainActivity extends ActionBarActivity {
     public void misClases(View v)
     {
         Intent intent = new Intent(this,misClases.class);
+        intent.putExtra("Nombre",actual.darNombre());
         startActivity(intent);
     }
 }

@@ -1,6 +1,7 @@
 package proyecto_moviles.tutoriasapp;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,14 +27,13 @@ public class Inicio extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
-        if(db==null) {
-            Log.i("Se creo la base de dato", "!!!!!!!!!");
-            db = new DBHelper(this);
-        }
-        else
-        {
-            Log.i("No se creo la base", "XXXXXXXXXXXX");
-        }
+        db = new DBHelper(this);
+        SQLiteDatabase datos = db.getWritableDatabase();
+        ContentValues valores = new ContentValues();
+        valores.put("nombre","Pablo");
+        valores.put("clave","hola123");
+        valores.put("telefono",1234567);
+        datos.insert("USUARIOS",null,valores);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class Inicio extends Activity {
             String claveDB =  cursor.getString(cursor.getColumnIndex("clave"));
             if(usuario.equals(usuarioDB) && clave.equals(claveDB))
             {
-                intent.putExtra("Nombre",usuarioDB);
+                intent.putExtra("Nombre",usuario);
             }
         }
         cursor.close();

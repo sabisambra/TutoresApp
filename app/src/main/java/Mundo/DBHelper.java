@@ -29,10 +29,8 @@ public class DBHelper extends SQLiteOpenHelper
     {
         String createTableUsuarios = "CREATE TABLE USUARIOS (nombre TEXT PRIMARY KEY, clave TEXT, telefono INTEGER)";
         String createTableMaterias = "CREATE TABLE MATERIAS (id INTEGER PRIMARY KEY AUTOINCREMENT, materia TEXT, usuario TEXT)";
-        String usuarioNuevo = "INSERT INTO USUARIOS VALUES (Pedro,hola123,1234567";
         db.execSQL(createTableUsuarios);
         db.execSQL(createTableMaterias);
-        db.execSQL(usuarioNuevo);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
