@@ -1,13 +1,15 @@
 package proyecto_moviles.tutoriasapp;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 
-public class Inicio extends ActionBarActivity {
+public class Inicio extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,10 @@ public class Inicio extends ActionBarActivity {
     public void ingresar(View v)
     {
         Intent intent = new Intent(this,MainActivity.class);
+        EditText usuarioText = (EditText) findViewById(R.id.nombreUsuario);
+        EditText claveText = (EditText) findViewById(R.id.claveUsuario);
+        String usuario = usuarioText.toString();
+        String clave = claveText.toString();
         startActivity(intent);
     }
 
