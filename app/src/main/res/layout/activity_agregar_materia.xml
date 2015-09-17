@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -6,7 +6,21 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="proyecto_moviles.tutoriasapp.AgregarMateria">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+    <TextView android:text="Escoge la materia que quieres agregar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-</RelativeLayout>
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/materias"
+        android:id="@+id/spinnerAgregarMaterias"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Agregar Materia"
+        android:onClick="agregarMateria"
+        />
+
+</LinearLayout>

@@ -1,16 +1,31 @@
 package proyecto_moviles.tutoriasapp;
 
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Spinner;
+
+import Mundo.DBHelper;
+import Mundo.Usuario;
 
 public class AgregarMateria extends ActionBarActivity {
+
+    private Usuario actual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_materia);
+        Intent i = getIntent();
+        String nombre = i.getStringExtra("Nombre");
+        actual = new Usuario();
+        actual.cambiarNombre(nombre);
     }
 
     @Override
@@ -33,5 +48,26 @@ public class AgregarMateria extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void agregarMateria(View v)
+    {
+        DBHelper db = new DBHelper(this);
+        SQLiteDatabase datos = db.getReadableDatabase();
+        Spinner materiaSelec = (Spinner)findViewById(R.id.spinnerAgregarMaterias);
+        String materia = materiaSelec.getSelectedItem().toString();
+        String consultaExistencia = "SELECT * FROM MATERIAS WHERE nombre='" + actual.darNombre() + "' && materia='" + materia + "'";
+        Cursor cursor = datos.rawQuery(consultaExistencia,null);
+        if(!cursor.moveToFirst())
+        {
+            datos = db.getWritableDatabase();
+            ContentValues valores = new ContentValues();
+            valores.put("usuario",actual.darNombre());
+            valores.put("materia",materia);
+            datos.insert("MATERIAS",null,valores);
+        }
+        datos.close();
+        Intent intent = new Intent(this,misClases.class);
+        startActivity(intent);
     }
 }

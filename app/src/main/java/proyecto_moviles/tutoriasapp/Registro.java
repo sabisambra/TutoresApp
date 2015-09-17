@@ -67,6 +67,7 @@ public class Registro extends ActionBarActivity {
             valores.put("telefono",telefono);
             datos.insert("USUARIOS",null,valores);
         }
+        datos.close();
         startActivity(intent);
     }
 }

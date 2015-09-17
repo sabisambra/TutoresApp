@@ -1,12 +1,15 @@
 package proyecto_moviles.tutoriasapp;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.util.ArrayList;
 
 import Mundo.DBHelper;
 import Mundo.Usuario;
@@ -26,6 +29,11 @@ public class misClases extends ActionBarActivity {
         actual.cambiarNombre(nombre);
         DBHelper db = new DBHelper(this);
         SQLiteDatabase datos = db.getReadableDatabase();
+        ArrayList<String> materias = new ArrayList<String>();
+        String consultaMaterias = "SELECT * FROM MATERIAS WHERE nombre='" + actual.darNombre() + "'";
+        Cursor cursor = datos.rawQuery(consultaMaterias,null);
+        
+        datos.close();
     }
 
     @Override
