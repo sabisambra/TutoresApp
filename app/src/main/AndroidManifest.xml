@@ -48,6 +48,10 @@
             android:name=".AgregarMateria"
             android:label="@string/title_activity_agregar_materia" >
         </activity>
+        <activity
+            android:name=".InfoTutor"
+            android:label="@string/title_activity_info_tutor" >
+        </activity>
     </application>
 
 </manifest>

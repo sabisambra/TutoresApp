@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import Mundo.Usuario;
 public class misClases extends ActionBarActivity {
 
     private Usuario actual;
+    private ListView mList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +43,14 @@ public class misClases extends ActionBarActivity {
                 materias.add(materiaNueva);
             }while(cursor.moveToNext());
         }
+        cursor.close();
         datos.close();
         TextView temp = (TextView) findViewById(R.id.temporal);
         temp.setText("La cantidad de materias es: " + materias.size());
+        mList = (ListView)findViewById(R.id.clases);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.lista_item,R.id.label,materias);
+        mList.setAdapter(adapter);
+
     }
 
     @Override

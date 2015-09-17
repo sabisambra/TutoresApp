@@ -66,6 +66,7 @@ public class AgregarMateria extends ActionBarActivity {
             valores.put("materia",materia);
             datos.insert("MATERIAS",null,valores);
         }
+        cursor.close();
         datos.close();
         Intent intent = new Intent(this,misClases.class);
         intent.putExtra("Nombre",actual.darNombre());

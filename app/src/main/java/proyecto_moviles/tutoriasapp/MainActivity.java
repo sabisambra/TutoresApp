@@ -68,13 +68,14 @@ public class MainActivity extends ActionBarActivity {
         Spinner spinnerHora = (Spinner) findViewById(R.id.spinnerHoras);
         String hora = spinnerHora.getSelectedItem().toString();
         intent.putExtra("Hora",hora);
+        intent.putExtra("Nombre",actual.darNombre());
         startActivity(intent);
     }
 
     public void misClases(View v)
     {
         Intent intent = new Intent(this,misClases.class);
-        intent.putExtra("Nombre",actual.darNombre());
+        intent.putExtra("Nombre", actual.darNombre());
         startActivity(intent);
     }
 }
