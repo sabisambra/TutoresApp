@@ -23,4 +23,32 @@
         android:text="Ingresa tu nombre de usuario"
         />
 
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/nombreUsuario"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingresa tu clave"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/claveUsuario"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ingresar"
+        android:onClick="ingresar"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrarse"
+        android:onClick="registrarse"/>
+
 </LinearLayout>

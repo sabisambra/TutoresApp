@@ -58,5 +58,6 @@
         <item>6:00</item>
     </string-array>
     <string name="title_activity_inicio">Inicio</string>
+    <string name="title_activity_registro">Registro</string>
 
 </resources>
