@@ -5,9 +5,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import Mundo.DBHelper;
@@ -38,6 +40,7 @@ public class InfoTutor extends ActionBarActivity {
             String telefonoQuery = cursor.getString(cursor.getColumnIndex("telefono"));
             nombreTutorText.setText(nombreTutorQuery);
             telefonoTutorText.setText(telefonoQuery);
+            actual.cambiarTelefono(Integer.parseInt(telefonoQuery));
         }
         cursor.close();
         datos.close();
@@ -67,6 +70,11 @@ public class InfoTutor extends ActionBarActivity {
 
     public void enviarMensaje(View v)
     {
+        SmsManager manager = SmsManager.getDefault();
+        String telefono = actual.darTelefono() + "";
+        EditText mensaje = (EditText) findViewById(R.id.mensajeTexto);
+        String mensajeTexto = mensaje.getText().toString();
+        manager.sendTextMessage(telefono,null,mensajeTexto,null,null);
         Intent intent = new Intent(this,MainActivity.class);
         intent.putExtra("Nombre",actual.darNombre());
         startActivity(intent);
