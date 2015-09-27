@@ -33,6 +33,7 @@ public class verTutores extends ActionBarActivity {
 
     private ListView mList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,39 +48,46 @@ public class verTutores extends ActionBarActivity {
         setTitle("Tutores");
         DBHelper db = new DBHelper(this);
         SQLiteDatabase datos = db.getReadableDatabase();
-        String busqueda = "SELECT * FROM MATERIAS WHERE materia='" + materia +"'";
+        String busqueda = "SELECT * FROM MATERIAS INNER JOIN USUARIOS ON MATERIAS.usuario=USUARIOS.nombre WHERE materia='" + materia +"'";
         Log.i("Impresion 5", "Impresion 5");
         Cursor cursor = datos.rawQuery(busqueda,null);
         ArrayList<String> tutores = new ArrayList<String>();
+        ArrayList<String> telefonos = new ArrayList<String>();
         Log.i("Impresion 6", "Impresion 6");
         if(cursor.moveToFirst())
         {
             do{
                 String tutor = cursor.getString(cursor.getColumnIndex("usuario"));
+                String telefono = cursor.getString(cursor.getColumnIndex("telefono"));
+                Log.i("El telefono es", telefono + "");
+                telefonos.add(telefono);
                 tutores.add(tutor);
             }while(cursor.moveToNext());
         }
         cursor.close();
         datos.close();
-        Log.i("Impresion 7", "Impresion 7");
-        texto.setText(materia + "\n" + dia + "\n" + hora + "\n" + "La busqueda dio como respuesta " + tutores.size());
-        texto.setText("");
-        mList = (ListView)findViewById(R.id.tutores);
-        Log.i("Impresion 8", "Impresion 8");
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.lista_item,R.id.label,tutores);
-        mList.setAdapter(adapter);
-        Log.i("Impresion 9", "Impresion 9");
-        mList.setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView parent, View view,
-                                    int position, long id) {
-                String tutorSeleccionado = ((TextView) view).getText().toString();
-                Intent j = new Intent(getApplicationContext(), InfoTutor.class);
-                j.putExtra("Tutor", tutorSeleccionado);
-                j.putExtra("Nombre", actual.darNombre());
-                startActivity(j);
-            }
-        });
-
+        if(tutores.size()==0)
+        {
+            texto.setText("No se han encontrado tutores para " + materia + " para el dia " + dia + " a la hora " + hora);
+        }
+        else
+        {
+            texto.setText("");
+            mList = (ListView) findViewById(R.id.tutores);
+            Log.i("Impresion 8", "Impresion 8");
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.lista_item, R.id.label, tutores);
+            mList.setAdapter(adapter);
+            mList.setOnItemClickListener(new OnItemClickListener() {
+                public void onItemClick(AdapterView parent, View view,
+                                        int position, long id) {
+                    String tutorSeleccionado = ((TextView) view).getText().toString();
+                    Intent j = new Intent(getApplicationContext(), InfoTutor.class);
+                    j.putExtra("Tutor", tutorSeleccionado);
+                    j.putExtra("Nombre", actual.darNombre());
+                    startActivity(j);
+                }
+            });
+        }
     }
 
     @Override
@@ -100,6 +108,7 @@ public class verTutores extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        Log.i("El id que estoy buscand", id + " ");
 
         return super.onOptionsItemSelected(item);
     }

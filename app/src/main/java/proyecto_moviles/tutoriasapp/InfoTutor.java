@@ -71,7 +71,7 @@ public class InfoTutor extends ActionBarActivity {
     public void enviarMensaje(View v)
     {
         SmsManager manager = SmsManager.getDefault();
-        TextView telefonoText = (TextView) findViewById(R.id.telefonoTutorSeleccionado);
+        TextView telefonoText = (TextView) findViewById(R.id.telefonoTutor);
         String telefono = telefonoText.getText().toString();
         EditText mensaje = (EditText) findViewById(R.id.mensajeTexto);
         String mensajeTexto = mensaje.getText().toString();

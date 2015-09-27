@@ -1,5 +1,6 @@
 package proyecto_moviles.tutoriasapp;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -55,10 +56,15 @@ public class Registro extends ActionBarActivity {
         String nombre = nombreText.getText().toString();
         String clave = claveText.getText().toString();
         String telefono = telefonoText.getText().toString();
+        if(!(telefono.length()==10))
+        {
+            new AlertDialog.Builder(this).setTitle("Error").setMessage("Asegurece que el telefono este correcto").setNeutralButton("Cerrar", null).show();
+            return;
+        }
         DBHelper db = new DBHelper(this);
         SQLiteDatabase datos = db.getReadableDatabase();
         String consultaExistencia = "SELECT * FROM USUARIOS WHERE nombre='" + nombre +"'";
-        Cursor cursor = datos.rawQuery(consultaExistencia,null);
+        Cursor cursor = datos.rawQuery(consultaExistencia, null);
         if(!cursor.moveToFirst())
         {
             datos = db.getWritableDatabase();
@@ -66,9 +72,15 @@ public class Registro extends ActionBarActivity {
             valores.put("nombre",nombre);
             valores.put("clave",clave);
             valores.put("telefono",telefono);
-            datos.insert("USUARIOS",null,valores);
+            datos.insert("USUARIOS", null, valores);
+            datos.close();
+            startActivity(intent);
         }
-        datos.close();
-        startActivity(intent);
+        else
+        {
+            new AlertDialog.Builder(this).setTitle("Error").setMessage("Ya hay un usuario con ese nombre ").setNeutralButton("Cerrar", null).show();
+            return;
+        }
+
     }
 }

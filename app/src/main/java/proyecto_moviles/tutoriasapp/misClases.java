@@ -3,8 +3,10 @@ package proyecto_moviles.tutoriasapp;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -71,10 +73,16 @@ public class misClases extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if(id == R.id.action_acerca_de)
+        else if(id == R.id.action_acerca_de)
         {
             Intent intent = new Intent(this,AcercaDe.class);
             startActivity(intent);
+        }
+        if (id == 16908332)
+        {
+            Intent intentParent = new Intent(this,MainActivity.class);
+            intentParent.putExtra("Nombre",actual.darNombre());
+            startActivity(intentParent);
         }
 
         return super.onOptionsItemSelected(item);
