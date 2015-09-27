@@ -1,15 +1,11 @@
 <resources>
-    <string name="app_name">Cerebro</string>
+    <string name="app_name">TutoriasApp</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_ver_tutores">verTutores</string>
     <string name="title_activity_mis_clases">misClases</string>
     <string name="title_activity_acerca_de">Acerca De</string>
-    <string name="title_activity_inicio">Cerebro</string>
-    <string name="title_activity_registro">Registro</string>
-    <string name="title_activity_agregar_materia">AgregarMateria</string>
-    <string name="title_activity_info_tutor">InfoTutor</string>
 
     <string-array name="materias">
         <item>Algoritmica y Programacion de Objetos 1</item>
@@ -61,5 +57,9 @@
         <item>5:30</item>
         <item>6:00</item>
     </string-array>
+    <string name="title_activity_inicio">Inicio</string>
+    <string name="title_activity_registro">Registro</string>
+    <string name="title_activity_agregar_materia">AgregarMateria</string>
+    <string name="title_activity_info_tutor">InfoTutor</string>
 
 </resources>
