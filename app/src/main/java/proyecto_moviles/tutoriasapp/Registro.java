@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,6 +54,7 @@ public class Registro extends ActionBarActivity {
         EditText telefonoText = (EditText) findViewById(R.id.telefonoRegistro);
         String nombre = nombreText.getText().toString();
         String clave = claveText.getText().toString();
+        Log.i("Telefono","EL telefono es:" + telefonoText.getText().toString());
         int telefono = Integer.parseInt(telefonoText.getText().toString());
         DBHelper db = new DBHelper(this);
         SQLiteDatabase datos = db.getReadableDatabase();

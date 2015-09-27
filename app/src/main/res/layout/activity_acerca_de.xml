@@ -9,7 +9,7 @@
     android:orientation="vertical"
     tools:context="proyecto_moviles.tutoriasapp.AcercaDe">
 
-    <TextView android:text="TutoresApp es una aplicación diseñada por estudiantes de la Universidad de los Andes buscando brindarle la posibilidad a los estudiantes de buscar tutores que les colaboren a solucionar dudas en las diferentes materias de la Universidad"
+    <TextView android:text="Cerebro es una aplicación diseñada por estudiantes de la Universidad de los Andes buscando brindarle la posibilidad a los estudiantes de buscar tutores que les colaboren a solucionar dudas en las diferentes materias de la Universidad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

@@ -1,6 +1,7 @@
 package proyecto_moviles.tutoriasapp;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -54,6 +55,7 @@ public class Inicio extends Activity {
 
     public void ingresar(View v)
     {
+        boolean ingreso = false;
         Intent intent = new Intent(this,MainActivity.class);
         EditText usuarioText = (EditText) findViewById(R.id.nombreUsuario);
         EditText claveText = (EditText) findViewById(R.id.claveUsuario);
@@ -69,11 +71,18 @@ public class Inicio extends Activity {
             if(usuario.equals(usuarioDB) && clave.equals(claveDB))
             {
                 intent.putExtra("Nombre",usuario);
+                ingreso = true;
             }
         }
         cursor.close();
         baseDatos.close();
-        startActivity(intent);
+        if(ingreso)
+            startActivity(intent);
+        else
+        {
+            new AlertDialog.Builder(this).setTitle("Error").setMessage("El nombre de usuario y/o clave estan erradas").setNeutralButton("Cerrar", null).show();
+            return;
+        }
     }
 
     public void registrarse(View v)

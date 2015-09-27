@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -59,16 +60,20 @@ public class MainActivity extends ActionBarActivity {
     public void mostrarTutores(View v)
     {
         Spinner spinnerMateria = (Spinner)findViewById(R.id.spinnerMaterias);
+        Log.i("Impresion 1","Impresion 1");
         String materia = spinnerMateria.getSelectedItem().toString();
         Intent intent = new Intent(this,verTutores.class);
         intent.putExtra("Materia", materia);
         Spinner spinnerDia = (Spinner) findViewById(R.id.spinnerDia);
+        Log.i("Impresion 2","Impresion 2");
         String dia = spinnerDia.getSelectedItem().toString();
         intent.putExtra("Dia", dia);
         Spinner spinnerHora = (Spinner) findViewById(R.id.spinnerHoras);
+        Log.i("Impresion 3","Impresion 3");
         String hora = spinnerHora.getSelectedItem().toString();
         intent.putExtra("Hora",hora);
         intent.putExtra("Nombre",actual.darNombre());
+        Log.i("Impresion 4", "Impresion 4");
         startActivity(intent);
     }
 

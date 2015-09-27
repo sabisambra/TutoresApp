@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.Contacts;
 import android.provider.ContactsContract;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,8 +48,10 @@ public class verTutores extends ActionBarActivity {
         DBHelper db = new DBHelper(this);
         SQLiteDatabase datos = db.getReadableDatabase();
         String busqueda = "SELECT * FROM MATERIAS WHERE materia='" + materia +"'";
+        Log.i("Impresion 5", "Impresion 5");
         Cursor cursor = datos.rawQuery(busqueda,null);
         ArrayList<String> tutores = new ArrayList<String>();
+        Log.i("Impresion 6", "Impresion 6");
         if(cursor.moveToFirst())
         {
             do{
@@ -58,21 +61,25 @@ public class verTutores extends ActionBarActivity {
         }
         cursor.close();
         datos.close();
+        Log.i("Impresion 7", "Impresion 7");
         texto.setText(materia + "\n" + dia + "\n" + hora + "\n" + "La busqueda dio como respuesta " + tutores.size());
         texto.setText("");
         mList = (ListView)findViewById(R.id.tutores);
+        Log.i("Impresion 8", "Impresion 8");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.lista_item,R.id.label,tutores);
         mList.setAdapter(adapter);
+        Log.i("Impresion 9", "Impresion 9");
         mList.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView parent, View view,
                                     int position, long id) {
                 String tutorSeleccionado = ((TextView) view).getText().toString();
                 Intent j = new Intent(getApplicationContext(), InfoTutor.class);
                 j.putExtra("Tutor", tutorSeleccionado);
-                j.putExtra("Nombre",actual.darNombre());
+                j.putExtra("Nombre", actual.darNombre());
                 startActivity(j);
             }
         });
+
     }
 
     @Override
