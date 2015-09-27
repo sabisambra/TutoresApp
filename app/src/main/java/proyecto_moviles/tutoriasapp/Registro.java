@@ -54,8 +54,7 @@ public class Registro extends ActionBarActivity {
         EditText telefonoText = (EditText) findViewById(R.id.telefonoRegistro);
         String nombre = nombreText.getText().toString();
         String clave = claveText.getText().toString();
-        Log.i("Telefono","EL telefono es:" + telefonoText.getText().toString());
-        int telefono = Integer.parseInt(telefonoText.getText().toString());
+        String telefono = telefonoText.getText().toString();
         DBHelper db = new DBHelper(this);
         SQLiteDatabase datos = db.getReadableDatabase();
         String consultaExistencia = "SELECT * FROM USUARIOS WHERE nombre='" + nombre +"'";
