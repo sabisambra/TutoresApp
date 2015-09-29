@@ -57,6 +57,17 @@ public class verTutores extends ActionBarActivity {
             do{
                 String tutor = cursor.getString(cursor.getColumnIndex("usuario"));
                 String telefono = cursor.getString(cursor.getColumnIndex("telefono"));
+                String[] PROJECTION = new String[] {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
+                Cursor c = managedQuery(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION,ContactsContract.CommonDataKinds.Phone.NUMBER + "='" + telefono + "'",null,null);
+                Log.i("Resultados ", c.getCount() + "");
+                if(c.moveToFirst())
+                {
+                    tutor = tutor + "       *";
+                }
+                else
+                {
+                    tutor = tutor + "        ";
+                }
                 telefonos.add(telefono);
                 tutores.add(tutor);
             }while(cursor.moveToNext());
@@ -69,17 +80,6 @@ public class verTutores extends ActionBarActivity {
             Log.i("Telefono " + j, telefonos.get(j));
         }
 
-        //String[] PROJECTION = new String[] {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
-        //Cursor c = managedQuery(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION,ContactsContract.CommonDataKinds.Phone.NUMBER + "='3153329696'",null,null);
-        //Log.i("Resultados ",c.getCount()+"");
-        //if(c.moveToFirst())
-        //{
-        //        String telephone = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-        //        String nombre = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-        //        Log.i(nombre, telephone);
-        //}
-        ///Log.i("Listo","Listo");
-
         if(tutores.size()==0)
         {
             texto.setText("No se han encontrado tutores para " + materia + " para el dia " + dia + " a la hora " + hora);
@@ -88,37 +88,54 @@ public class verTutores extends ActionBarActivity {
         {
             texto.setText("");
             mList = (ListView) findViewById(R.id.tutores);
-            Log.i("Impresion 8", "Impresion 8");
+            //for(int j=0;j<telefonos.size();j++)
+            //{
+            //    String[] PROJECTION = new String[] {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
+            //    Cursor c = managedQuery(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION,ContactsContract.CommonDataKinds.Phone.NUMBER + "='" + telefonos.get(j) + "'",null,null);
+            //    Log.i("Resultados ", c.getCount() + "");
+            //    if(c.moveToFirst())
+            //    {
+            //        String tu = tutores.get(j);
+            //        tu = tu + "       *";
+            //    }
+            //    else
+            //    {
+            //        String tu = tutores.get(j);
+            //        tu = tu + "        ";
+            //    }
+            //}
+
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.lista_item, R.id.label, tutores);
             mList.setAdapter(adapter);
             mList.setOnItemClickListener(new OnItemClickListener() {
                 public void onItemClick(AdapterView parent, View view,
                                         int position, long id) {
                     String tutorSeleccionado = ((TextView) view).getText().toString();
+                    String tutorSelect = tutorSeleccionado.substring(0,tutorSeleccionado.length()-8);
                     Intent j = new Intent(getApplicationContext(), InfoTutor.class);
-                    j.putExtra("Tutor", tutorSeleccionado);
+                    j.putExtra("Tutor", tutorSelect);
                     j.putExtra("Nombre", actual.darNombre());
                     startActivity(j);
                 }
             });
-            mListContactos = (ListView) findViewById(R.id.listViewContactos);
-            ArrayList<String> contactos = new ArrayList<String>();
-            for(int j=0;j<telefonos.size();j++)
-            {
-                String[] PROJECTION = new String[] {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
-                Cursor c = managedQuery(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION,ContactsContract.CommonDataKinds.Phone.NUMBER + "='" + telefonos.get(j) + "'",null,null);
-                Log.i("Resultados ", c.getCount() + "");
-                if(c.moveToFirst())
-                {
-                    contactos.add("*");
-                }
-                else
-                {
-                    contactos.add(" ");
-                }
-            }
-            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.lista_item, R.id.label, contactos);
-            mListContactos.setAdapter(adapter2);
+            //mListContactos = (ListView) findViewById(R.id.listViewContactos);
+            //ArrayList<String> contactos = new ArrayList<String>();
+            //for(int j=0;j<telefonos.size();j++)
+            //{
+            //    String[] PROJECTION = new String[] {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
+            //    Cursor c = managedQuery(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION,ContactsContract.CommonDataKinds.Phone.NUMBER + "='" + telefonos.get(j) + "'",null,null);
+            //    Log.i("Resultados ", c.getCount() + "");
+            //    if(c.moveToFirst())
+            //    {
+            //        contactos.add("*");
+            //    }
+            //    else
+            //    {
+            //        contactos.add(" ");
+            //    }
+            //}
+            //ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.lista_item, R.id.label, contactos);
+            //mListContactos.setAdapter(adapter2);
         }
     }
 

@@ -15,27 +15,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/texto"/>
 
-    <LinearLayout
-        android:orientation="horizontal"
+
+
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="wrap_content"
+        android:id="@+id/tutores"
+        android:padding="10dp"
+        android:textSize="20sp"/>
 
-        <ListView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.4"
-            android:id="@+id/tutores"
-            android:padding="10dp"
-            android:textSize="20sp"/>
 
-        <ListView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/listViewContactos"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="0.4"
-            />
-    </LinearLayout>
 
 </LinearLayout>
