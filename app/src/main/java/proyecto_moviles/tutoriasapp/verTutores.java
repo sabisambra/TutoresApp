@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Contacts;
 import android.provider.ContactsContract;
@@ -16,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -28,11 +30,9 @@ public class verTutores extends ActionBarActivity {
 
 
     private final int CONTACT_PICKER_RESULT = 1;
-
     private Usuario actual;
-
     private ListView mList;
-
+    private ListView mListContactos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,23 +49,37 @@ public class verTutores extends ActionBarActivity {
         DBHelper db = new DBHelper(this);
         SQLiteDatabase datos = db.getReadableDatabase();
         String busqueda = "SELECT * FROM MATERIAS INNER JOIN USUARIOS ON MATERIAS.usuario=USUARIOS.nombre WHERE materia='" + materia +"'";
-        Log.i("Impresion 5", "Impresion 5");
         Cursor cursor = datos.rawQuery(busqueda,null);
         ArrayList<String> tutores = new ArrayList<String>();
         ArrayList<String> telefonos = new ArrayList<String>();
-        Log.i("Impresion 6", "Impresion 6");
         if(cursor.moveToFirst())
         {
             do{
                 String tutor = cursor.getString(cursor.getColumnIndex("usuario"));
                 String telefono = cursor.getString(cursor.getColumnIndex("telefono"));
-                Log.i("El telefono es", telefono + "");
                 telefonos.add(telefono);
                 tutores.add(tutor);
             }while(cursor.moveToNext());
         }
         cursor.close();
         datos.close();
+
+        for(int j=0;j<telefonos.size();j++)
+        {
+            Log.i("Telefono " + j, telefonos.get(j));
+        }
+
+        //String[] PROJECTION = new String[] {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
+        //Cursor c = managedQuery(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION,ContactsContract.CommonDataKinds.Phone.NUMBER + "='3153329696'",null,null);
+        //Log.i("Resultados ",c.getCount()+"");
+        //if(c.moveToFirst())
+        //{
+        //        String telephone = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+        //        String nombre = c.getString(c.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+        //        Log.i(nombre, telephone);
+        //}
+        ///Log.i("Listo","Listo");
+
         if(tutores.size()==0)
         {
             texto.setText("No se han encontrado tutores para " + materia + " para el dia " + dia + " a la hora " + hora);
@@ -87,6 +101,24 @@ public class verTutores extends ActionBarActivity {
                     startActivity(j);
                 }
             });
+            mListContactos = (ListView) findViewById(R.id.listViewContactos);
+            ArrayList<String> contactos = new ArrayList<String>();
+            for(int j=0;j<telefonos.size();j++)
+            {
+                String[] PROJECTION = new String[] {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
+                Cursor c = managedQuery(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION,ContactsContract.CommonDataKinds.Phone.NUMBER + "='" + telefonos.get(j) + "'",null,null);
+                Log.i("Resultados ", c.getCount() + "");
+                if(c.moveToFirst())
+                {
+                    contactos.add("*");
+                }
+                else
+                {
+                    contactos.add(" ");
+                }
+            }
+            ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.lista_item, R.id.label, contactos);
+            mListContactos.setAdapter(adapter2);
         }
     }
 
@@ -119,8 +151,4 @@ public class verTutores extends ActionBarActivity {
         startActivityForResult(contentPickerIntent,CONTACT_PICKER_RESULT);
     }
 
-    public void onActivityResult(int reqCode, int resultCode, Intent data)
-    {
-
-    }
 }
