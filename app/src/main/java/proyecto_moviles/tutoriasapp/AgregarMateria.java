@@ -6,10 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Spinner;
+
+import java.io.OutputStreamWriter;
 
 import Mundo.DBHelper;
 import Mundo.Usuario;
@@ -45,6 +48,26 @@ public class AgregarMateria extends ActionBarActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        else if(id == R.id.action_acerca_de)
+        {
+            Intent intent = new Intent(this,AcercaDe.class);
+            startActivity(intent);
+        }
+        else if(id==R.id.action_logout)
+        {
+            Intent intent = new Intent(this,Inicio.class);
+            try
+            {
+                OutputStreamWriter impresora = new OutputStreamWriter(openFileOutput(Inicio.DATOS, 0));
+                impresora.write("No hay sesion");
+                impresora.close();
+            }
+            catch (Exception e)
+            {
+                Log.i("Archivo", "No se escribio");
+            }
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

@@ -16,6 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
 
@@ -32,6 +35,32 @@ public class Inicio extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inicio);
         db = new DBHelper(this);
+        try
+        {
+            InputStream archivo = openFileInput(DATOS);
+            if(archivo!=null)
+            {
+                Log.i("El archivo existe"," Wohoo");
+                InputStreamReader temp = new InputStreamReader(archivo);
+                BufferedReader lector = new BufferedReader(temp);
+                String linea = lector.readLine();
+                if(!linea.equals("No hay sesion"))
+                {
+                    Intent i = new Intent(this,MainActivity.class);
+                    startActivity(i);
+                }
+            }
+            else
+            {
+                Log.i("El archivo no existe"," Hmmmmmm");
+            }
+            archivo.close();
+
+        }
+        catch (Exception e)
+        {
+
+        }
     }
 
     @Override
@@ -73,12 +102,12 @@ public class Inicio extends Activity {
             String claveDB =  cursor.getString(cursor.getColumnIndex("clave"));
             if(usuario.equals(usuarioDB) && clave.equals(claveDB))
             {
-                intent.putExtra("Nombre",usuario);
-                ingreso = true;
-                try {
+                try
+                {
                     OutputStreamWriter impresora = new OutputStreamWriter(openFileOutput(DATOS, 0));
                     impresora.write(usuario);
                     impresora.close();
+                    ingreso = true;
                 }
                 catch (Exception e)
                 {

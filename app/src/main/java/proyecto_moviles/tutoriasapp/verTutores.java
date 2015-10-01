@@ -21,6 +21,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
+
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 import Mundo.DBHelper;
@@ -157,7 +159,26 @@ public class verTutores extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        Log.i("El id que estoy buscand", id + " ");
+        else if(id==R.id.action_acerca_de)
+        {
+            Intent intent = new Intent(this,AcercaDe.class);
+            startActivity(intent);
+        }
+        else if(id==R.id.action_logout)
+        {
+            Intent intent = new Intent(this,Inicio.class);
+            try
+            {
+                OutputStreamWriter impresora = new OutputStreamWriter(openFileOutput(Inicio.DATOS, 0));
+                impresora.write("No hay sesion");
+                impresora.close();
+            }
+            catch (Exception e)
+            {
+                Log.i("Archivo", "No se escribio");
+            }
+            startActivity(intent);
+        }
 
         return super.onOptionsItemSelected(item);
     }

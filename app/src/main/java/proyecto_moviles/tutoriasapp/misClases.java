@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 import Mundo.DBHelper;
@@ -78,11 +79,20 @@ public class misClases extends ActionBarActivity {
             Intent intent = new Intent(this,AcercaDe.class);
             startActivity(intent);
         }
-        if (id == 16908332)
+        else if(id == R.id.action_logout)
         {
-            Intent intentParent = new Intent(this,MainActivity.class);
-            intentParent.putExtra("Nombre",actual.darNombre());
-            startActivity(intentParent);
+            Intent intent = new Intent(this,Inicio.class);
+            try
+            {
+                OutputStreamWriter impresora = new OutputStreamWriter(openFileOutput(Inicio.DATOS, 0));
+                impresora.write("No hay sesion");
+                impresora.close();
+            }
+            catch (Exception e)
+            {
+                Log.i("Archivo", "No se escribio");
+            }
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

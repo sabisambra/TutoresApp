@@ -14,6 +14,7 @@ import android.widget.TextView;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 import Mundo.DBHelper;
 import Mundo.Usuario;
@@ -29,14 +30,15 @@ public class MainActivity extends ActionBarActivity {
         TextView texto = (TextView)findViewById(R.id.textoBienvenida);
         actual = new Usuario();
         Intent i = getIntent();
+        String nombre="";
         try {
             InputStream archivo = openFileInput(Inicio.DATOS);
             if(archivo!=null)
             {
                 InputStreamReader temp = new InputStreamReader(archivo);
                 BufferedReader lector = new BufferedReader(temp);
-                String nombreArc = lector.readLine();
-                Log.i("El nombre archivo: ",nombreArc);
+                nombre = lector.readLine();
+                Log.i("El nombre archivo: ",nombre);
             }
             archivo.close();
         }
@@ -44,7 +46,6 @@ public class MainActivity extends ActionBarActivity {
         {
 
         }
-        String nombre = i.getStringExtra("Nombre");
         actual.cambiarNombre(nombre);
         texto.setText("Hola " + nombre);
     }
@@ -67,9 +68,24 @@ public class MainActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-        if(id == R.id.action_acerca_de)
+        else if(id == R.id.action_acerca_de)
         {
             Intent intent = new Intent(this,AcercaDe.class);
+            startActivity(intent);
+        }
+        else if(id==R.id.action_logout)
+        {
+            Intent intent = new Intent(this,Inicio.class);
+            try
+            {
+                OutputStreamWriter impresora = new OutputStreamWriter(openFileOutput(Inicio.DATOS, 0));
+                impresora.write("No hay sesion");
+                impresora.close();
+            }
+            catch (Exception e)
+            {
+                Log.i("Archivo", "No se escribio");
+            }
             startActivity(intent);
         }
 
@@ -79,20 +95,16 @@ public class MainActivity extends ActionBarActivity {
     public void mostrarTutores(View v)
     {
         Spinner spinnerMateria = (Spinner)findViewById(R.id.spinnerMaterias);
-        Log.i("Impresion 1","Impresion 1");
         String materia = spinnerMateria.getSelectedItem().toString();
         Intent intent = new Intent(this,verTutores.class);
         intent.putExtra("Materia", materia);
         Spinner spinnerDia = (Spinner) findViewById(R.id.spinnerDia);
-        Log.i("Impresion 2","Impresion 2");
         String dia = spinnerDia.getSelectedItem().toString();
         intent.putExtra("Dia", dia);
         Spinner spinnerHora = (Spinner) findViewById(R.id.spinnerHoras);
-        Log.i("Impresion 3","Impresion 3");
         String hora = spinnerHora.getSelectedItem().toString();
         intent.putExtra("Hora",hora);
-        intent.putExtra("Nombre",actual.darNombre());
-        Log.i("Impresion 4", "Impresion 4");
+        intent.putExtra("Nombre", actual.darNombre());
         startActivity(intent);
     }
 
