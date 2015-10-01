@@ -27,9 +27,6 @@ public class InfoTutor extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info_tutor);
         Intent i = getIntent();
-        String nombreUsuario = i.getStringExtra("Nombre");
-        actual = new Usuario();
-        actual.cambiarNombre(nombreUsuario);
         String nombreTutor = i.getStringExtra("Tutor");
         TextView nombreTutorText = (TextView)findViewById(R.id.nombreTutor);
         TextView telefonoTutorText = (TextView)findViewById(R.id.telefonoTutor);
@@ -97,7 +94,6 @@ public class InfoTutor extends ActionBarActivity {
         String telefono = telefonoText.getText().toString();
         EditText mensaje = (EditText) findViewById(R.id.mensajeTexto);
         String mensajeTexto = mensaje.getText().toString();
-        Log.i("EL telefono es:", telefono);
         manager.sendTextMessage(telefono,null,mensajeTexto,null,null);
         Intent intent = new Intent(this,MainActivity.class);
         intent.putExtra("Nombre",actual.darNombre());

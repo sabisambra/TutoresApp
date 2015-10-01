@@ -14,6 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
@@ -31,13 +34,26 @@ public class misClases extends ActionBarActivity {
         setContentView(R.layout.activity_mis_clases);
         setTitle("Mis Clases");
         Intent i = getIntent();
-        String nombre = i.getStringExtra("Nombre");
-        actual = new Usuario();
-        actual.cambiarNombre(nombre);
+        String nombre="";
+        try {
+            InputStream archivo = openFileInput(Inicio.DATOS);
+            if(archivo!=null)
+            {
+                InputStreamReader temp = new InputStreamReader(archivo);
+                BufferedReader lector = new BufferedReader(temp);
+                nombre = lector.readLine();
+                Log.i("El nombre archivo: ",nombre);
+            }
+            archivo.close();
+        }
+        catch(Exception e)
+        {
+
+        }
         DBHelper db = new DBHelper(this);
         SQLiteDatabase datos = db.getReadableDatabase();
         ArrayList<String> materias = new ArrayList<String>();
-        String consultaMaterias = "SELECT * FROM MATERIAS WHERE usuario='" + actual.darNombre() + "'";
+        String consultaMaterias = "SELECT * FROM MATERIAS WHERE usuario='" + nombre + "'";
         Cursor cursor = datos.rawQuery(consultaMaterias,null);
         if(cursor.moveToFirst())
         {
@@ -101,7 +117,6 @@ public class misClases extends ActionBarActivity {
     public void agregarMateria(View v)
     {
         Intent intent = new Intent(this,AgregarMateria.class);
-        intent.putExtra("Nombre",actual.darNombre());
         startActivity(intent);
     }
 }

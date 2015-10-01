@@ -12,6 +12,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Spinner;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import Mundo.DBHelper;
@@ -26,9 +29,24 @@ public class AgregarMateria extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agregar_materia);
         Intent i = getIntent();
-        String nombre = i.getStringExtra("Nombre");
-        actual = new Usuario();
+        String nombre="";
+        try {
+            InputStream archivo = openFileInput(Inicio.DATOS);
+            if(archivo!=null)
+            {
+                InputStreamReader temp = new InputStreamReader(archivo);
+                BufferedReader lector = new BufferedReader(temp);
+                nombre = lector.readLine();
+                Log.i("El nombre archivo: ",nombre);
+            }
+            archivo.close();
+        }
+        catch(Exception e)
+        {
+
+        }
         actual.cambiarNombre(nombre);
+
     }
 
     @Override
@@ -92,7 +110,6 @@ public class AgregarMateria extends ActionBarActivity {
         cursor.close();
         datos.close();
         Intent intent = new Intent(this,misClases.class);
-        intent.putExtra("Nombre",actual.darNombre());
         startActivity(intent);
     }
 }

@@ -32,7 +32,6 @@ public class verTutores extends ActionBarActivity {
 
 
     private final int CONTACT_PICKER_RESULT = 1;
-    private Usuario actual;
     private ListView mList;
     private ListView mListContactos;
 
@@ -41,8 +40,6 @@ public class verTutores extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_tutores);
         Intent i = getIntent();
-        actual = new Usuario();
-        actual.cambiarNombre(i.getStringExtra("Nombre"));
         String materia = i.getStringExtra("Materia");
         String dia = i.getStringExtra("Dia");
         String hora = i.getStringExtra("Hora");
@@ -76,12 +73,6 @@ public class verTutores extends ActionBarActivity {
         }
         cursor.close();
         datos.close();
-
-        for(int j=0;j<telefonos.size();j++)
-        {
-            Log.i("Telefono " + j, telefonos.get(j));
-        }
-
         if(tutores.size()==0)
         {
             texto.setText("No se han encontrado tutores para " + materia + " para el dia " + dia + " a la hora " + hora);
@@ -90,23 +81,6 @@ public class verTutores extends ActionBarActivity {
         {
             texto.setText("");
             mList = (ListView) findViewById(R.id.tutores);
-            //for(int j=0;j<telefonos.size();j++)
-            //{
-            //    String[] PROJECTION = new String[] {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
-            //    Cursor c = managedQuery(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION,ContactsContract.CommonDataKinds.Phone.NUMBER + "='" + telefonos.get(j) + "'",null,null);
-            //    Log.i("Resultados ", c.getCount() + "");
-            //    if(c.moveToFirst())
-            //    {
-            //        String tu = tutores.get(j);
-            //        tu = tu + "       *";
-            //    }
-            //    else
-            //    {
-            //        String tu = tutores.get(j);
-            //        tu = tu + "        ";
-            //    }
-            //}
-
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.lista_item, R.id.label, tutores);
             mList.setAdapter(adapter);
             mList.setOnItemClickListener(new OnItemClickListener() {
@@ -116,28 +90,9 @@ public class verTutores extends ActionBarActivity {
                     String tutorSelect = tutorSeleccionado.substring(0,tutorSeleccionado.length()-8);
                     Intent j = new Intent(getApplicationContext(), InfoTutor.class);
                     j.putExtra("Tutor", tutorSelect);
-                    j.putExtra("Nombre", actual.darNombre());
                     startActivity(j);
                 }
             });
-            //mListContactos = (ListView) findViewById(R.id.listViewContactos);
-            //ArrayList<String> contactos = new ArrayList<String>();
-            //for(int j=0;j<telefonos.size();j++)
-            //{
-            //    String[] PROJECTION = new String[] {ContactsContract.Contacts.DISPLAY_NAME, ContactsContract.CommonDataKinds.Phone.NUMBER};
-            //    Cursor c = managedQuery(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, PROJECTION,ContactsContract.CommonDataKinds.Phone.NUMBER + "='" + telefonos.get(j) + "'",null,null);
-            //    Log.i("Resultados ", c.getCount() + "");
-            //    if(c.moveToFirst())
-            //    {
-            //        contactos.add("*");
-            //    }
-            //    else
-            //    {
-            //        contactos.add(" ");
-            //    }
-            //}
-            //ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, R.layout.lista_item, R.id.label, contactos);
-            //mListContactos.setAdapter(adapter2);
         }
     }
 
