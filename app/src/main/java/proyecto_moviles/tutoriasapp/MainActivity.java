@@ -38,6 +38,7 @@ public class MainActivity extends ActionBarActivity {
                 String nombreArc = lector.readLine();
                 Log.i("El nombre archivo: ",nombreArc);
             }
+            archivo.close();
         }
         catch(Exception e)
         {
