@@ -16,11 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
 
 import Mundo.DBHelper;
 
 public class Inicio extends Activity {
+
+    public final static String DATOS = "datosCerebro.txt";
 
     private DBHelper db;
 
@@ -72,6 +75,15 @@ public class Inicio extends Activity {
             {
                 intent.putExtra("Nombre",usuario);
                 ingreso = true;
+                try {
+                    OutputStreamWriter impresora = new OutputStreamWriter(openFileOutput(DATOS, 0));
+                    impresora.write(usuario);
+                    impresora.close();
+                }
+                catch (Exception e)
+                {
+                    Log.i("Archivo", "No se escribio");
+                }
             }
         }
         cursor.close();

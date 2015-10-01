@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import Mundo.DBHelper;
 import Mundo.Usuario;
 
@@ -25,6 +29,20 @@ public class MainActivity extends ActionBarActivity {
         TextView texto = (TextView)findViewById(R.id.textoBienvenida);
         actual = new Usuario();
         Intent i = getIntent();
+        try {
+            InputStream archivo = openFileInput(Inicio.DATOS);
+            if(archivo!=null)
+            {
+                InputStreamReader temp = new InputStreamReader(archivo);
+                BufferedReader lector = new BufferedReader(temp);
+                String nombreArc = lector.readLine();
+                Log.i("El nombre archivo: ",nombreArc);
+            }
+        }
+        catch(Exception e)
+        {
+
+        }
         String nombre = i.getStringExtra("Nombre");
         actual.cambiarNombre(nombre);
         texto.setText("Hola " + nombre);
