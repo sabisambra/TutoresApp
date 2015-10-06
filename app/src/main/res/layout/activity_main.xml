@@ -61,4 +61,10 @@
         android:text="Mis Clases"
         android:onClick="misClases"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar Lugar"
+        android:onClick="buscarLugar"/>
+
 </LinearLayout>
