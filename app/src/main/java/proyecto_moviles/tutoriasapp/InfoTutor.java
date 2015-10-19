@@ -100,4 +100,14 @@ public class InfoTutor extends ActionBarActivity {
         startActivity(intent);
 
     }
+
+    public void verComentarios(View v)
+    {
+
+    }
+
+    public void agregarComentario(View w)
+    {
+
+    }
 }

@@ -114,4 +114,10 @@ public class MainActivity extends ActionBarActivity {
         intent.putExtra("Nombre", actual.darNombre());
         startActivity(intent);
     }
+
+    public void buscarLugar(View v)
+    {
+        Intent intent = new Intent(this,buscarLugarActivity.class);
+        startActivity(intent);
+    }
 }

@@ -1,8 +1,13 @@
 package proyecto_moviles.tutoriasapp;
 
+import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
@@ -60,6 +65,17 @@ public class buscarLugarActivity extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+        mMap.setMyLocationEnabled(true);
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Criteria criteria = new Criteria();
+        String provider = locationManager.getBestProvider(criteria,true);
+        Location myLocation = locationManager.getLastKnownLocation(provider);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        double latitude = myLocation.getLatitude();
+        double longitude = myLocation.getLongitude();
+        LatLng latLng = new LatLng(latitude,longitude);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+        mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title("Tu estas aqui").snippet("Esperemos que estemos en lo correcto"));
     }
 }
