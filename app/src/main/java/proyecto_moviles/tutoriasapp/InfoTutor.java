@@ -3,6 +3,7 @@ package proyecto_moviles.tutoriasapp;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.telephony.SmsManager;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.OutputStreamWriter;
 
@@ -109,5 +111,21 @@ public class InfoTutor extends ActionBarActivity {
     public void agregarComentario(View w)
     {
 
+    }
+
+    public void llamar(View v)
+    {
+        Intent i = new Intent(Intent.ACTION_CALL);
+        TextView telefonoTutor = (TextView) findViewById(R.id.telefonoTutor);
+        String telefono = telefonoTutor.getText().toString();
+        i.setData(Uri.parse("tel:"+telefono));
+        try
+        {
+            startActivity(i);
+        }
+        catch(Exception e)
+        {
+            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_SHORT).show();
+        }
     }
 }

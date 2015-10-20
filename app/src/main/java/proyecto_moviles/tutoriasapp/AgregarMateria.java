@@ -30,6 +30,7 @@ public class AgregarMateria extends ActionBarActivity {
         setContentView(R.layout.activity_agregar_materia);
         Intent i = getIntent();
         String nombre="";
+        actual = new Usuario();
         try {
             InputStream archivo = openFileInput(Inicio.DATOS);
             if(archivo!=null)
@@ -46,7 +47,6 @@ public class AgregarMateria extends ActionBarActivity {
 
         }
         actual.cambiarNombre(nombre);
-
     }
 
     @Override

@@ -35,7 +35,6 @@ public class Inicio extends Activity {
             InputStream archivo = openFileInput(DATOS);
             if(archivo!=null)
             {
-                Log.i("El archivo existe"," Wohoo");
                 InputStreamReader temp = new InputStreamReader(archivo);
                 BufferedReader lector = new BufferedReader(temp);
                 String linea = lector.readLine();
@@ -47,7 +46,7 @@ public class Inicio extends Activity {
             }
             else
             {
-                Log.i("El archivo no existe"," Hmmmmmm");
+
             }
             archivo.close();
 

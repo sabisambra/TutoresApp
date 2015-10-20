@@ -40,6 +40,12 @@
         android:text="Ver Comentarios"
         android:onClick="verComentarios"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar Comentario"
+        android:onClick="agregarComentario"/>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,5 +57,10 @@
         android:text="Enviar Mensaje"
         android:onClick="enviarMensaje"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Llamar"
+        android:onClick="llamar"/>
 
 </LinearLayout>
