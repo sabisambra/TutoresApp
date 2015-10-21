@@ -78,7 +78,8 @@
 
         <activity
             android:name=".buscarLugarActivity"
-            android:label="@string/title_activity_buscar_lugar" >
+            android:label="@string/title_activity_buscar_lugar"
+            android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="proyecto_moviles.tutoriasapp.MainActivity" />

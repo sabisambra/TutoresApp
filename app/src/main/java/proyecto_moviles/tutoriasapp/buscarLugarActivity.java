@@ -6,6 +6,9 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
+import android.view.Menu;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -13,7 +16,13 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class buscarLugarActivity extends FragmentActivity {
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+public class buscarLugarActivity extends ActionBarActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
@@ -22,12 +31,19 @@ public class buscarLugarActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_lugar);
         setUpMapIfNeeded();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_info_tutor, menu);
+        return true;
     }
 
     /**
@@ -68,14 +84,30 @@ public class buscarLugarActivity extends FragmentActivity {
         mMap.setMyLocationEnabled(true);
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         Criteria criteria = new Criteria();
-        String provider = locationManager.getBestProvider(criteria,true);
+        String provider = locationManager.getBestProvider(criteria, true);
         Location myLocation = locationManager.getLastKnownLocation(provider);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        double latitude = myLocation.getLatitude();
-        double longitude = myLocation.getLongitude();
+        double latitude =  myLocation.getLatitude(); //4.597304;
+        double longitude = myLocation.getLongitude(); //-74.072788;
         LatLng latLng = new LatLng(latitude,longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
-        mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title("Tu estas aqui").snippet("Esperemos que estemos en lo correcto"));
+        //mMap.addMarker(new MarkerOptions().position(new LatLng(latitude,longitude)).title("Tu estas aqui").snippet("Esperemos que estemos en lo correcto"));
+        try {
+            InputStream archivo = getResources().getAssets().open("coordenadas.txt");
+            BufferedReader lector = new BufferedReader(new InputStreamReader(archivo));
+            String linea = lector.readLine();
+            while(linea!=null)
+            {
+                String[] punto = linea.split("=");
+                mMap.addMarker(new MarkerOptions().position(new LatLng(Double.parseDouble(punto[2]), Double.parseDouble(punto[1]))).title(punto[0]).snippet(""));
+                linea = lector.readLine();
+            }
+        }
+        catch(Exception e)
+        {
+            Log.i("Error","Toca ver que paso");
+        }
+
     }
 }

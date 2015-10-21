@@ -1,5 +1,19 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="proyecto_moviles.tutoriasapp.buscarLugarActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Aqui encontraras bibliotecas y cafes donde puedes estudiar"/>
+
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:id="@+id/map"
+    android:layout_height="200dp" android:id="@+id/map"
     tools:context="proyecto_moviles.tutoriasapp.buscarLugarActivity"
     android:name="com.google.android.gms.maps.SupportMapFragment" />
+
+</LinearLayout>

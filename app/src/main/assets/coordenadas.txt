@@ -1,0 +1,56 @@
+Luis Ángel Arango Library	=	-74.072788	=	4.597304
+Biblioteca El Tunal	=	-74.129914	=	4.572071
+Biblioteca Alfonso Borrero Cabal S.J.	=	-74.064552	=	4.628806
+BIBLIOTECA PÚBLICA Venecia Pablo Tarzo	=	-74.140925	=	4.592798
+Biblioteca de Bosa	=	-74.184878	=	4.610556
+Biblioteca Central Gabriel García Márquez	=	-74.083236	=	4.635328
+BIblioteca Pública las ferias	=	-74.089232	=	4.683772
+Biblioteca Francisco José de Caldas	=	-74.084844	=	4.741289
+BIBLIOTECA JUlIO MARIO SANTO DOMINGO	=	-74.062363	=	4.75702
+Juan Valdez	=	-74.120662	=	4.665095
+Juan Valdez	=	-74.130854	=	4.664194
+Juan Valdez Café	=	-74.119587	=	4.664713
+Juan Valdez Café	=	-74.107852	=	4.659313
+Juan Valdez	=	-74.110315	=	4.654073
+Café Juan Valdez	=	-74.109292	=	4.653163
+Juan Valdez café	=	-74.102677	=	4.645761
+Juan Valdez Café	=	-74.10034	=	4.645508
+Juan Valdéz	=	-74.091132	=	4.643863
+Juan Valdez Cafe	=	-74.088924	=	4.671767
+Starbucks Centro Internacional	=	-74.069961	=	4.615456
+Starbucks	=	-74.059087	=	4.651368
+Starbucks Zona T	=	-74.052508	=	4.667321
+Starbucks	=	-74.049306	=	4.677227
+Starbucks Coffee Colombia	=	-74.040368	=	4.680475
+Starbucks Coffee Colombia Torre 95	=	-74.045496	=	4.678142
+Starbucks Coffee Colombia Gran Estación	=	-74.102156	=	4.648172
+Starbucks Coffe Colombia	=	-74.12231	=	4.682073
+Juan Valdez Cafe	=	-74.074627	=	4.643206
+Juan Valdez Café	=	-74.09117	=	4.643784
+Juan Valdez Café	=	-74.056016	=	4.657143
+Juan Valdez Café	=	-74.038201	=	4.720048
+Juan Valdez Café	=	-74.062403	=	4.722692
+Juan Valdez	=	-74.04991	=	4.696001
+Juan Valdez Café	=	-74.06465	=	4.687848
+Juan Valdez	=	-74.047569	=	4.676063
+Juan Valdez	=	-74.053189	=	4.667211
+Juan Valdéz	=	-74.091132	=	4.643863
+Juan Valdez Café	=	-74.029317	=	4.715557
+Juan Valdez	=	-74.046127	=	4.722937
+Café Juan Valdez	=	-74.052749	=	4.705099
+Juan Valdez	=	-74.04991	=	4.696001
+Juan Valdez Cafe	=	-74.0325	=	4.69608
+Juan Valdez	=	-74.047569	=	4.676063
+Juan Valdez	=	-74.053189	=	4.667211
+Juan Valdez Café	=	-74.056016	=	4.657143
+Juan Valdez Café	=	-74.063044	=	4.639676
+Juan Valdez	=	-74.072936	=	4.596405
+Starbucks Coffe Colombia	=	-74.12231	=	4.682073
+Starbucks Coffee Colombia Gran Estación	=	-74.102156	=	4.648172
+Starbucks	=	-74.059087	=	4.651368
+Starbucks Zona T	=	-74.052508	=	4.667321
+Starbucks	=	-74.049306	=	4.677227
+Starbucks Coffee Colombia Torre 95	=	-74.045496	=	4.678142
+Starbucks Coffee Colombia	=	-74.040368	=	4.680475
+Starbucks Centro Internacional	=	-74.069961	=	4.615456
+Starbucks	=	-74.049306	=	4.677227
