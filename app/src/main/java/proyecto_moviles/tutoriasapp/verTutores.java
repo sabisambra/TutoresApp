@@ -73,7 +73,7 @@ public class verTutores extends ActionBarActivity {
         }
         cursor.close();
         datos.close();
-        if(tutores.size()==0)
+        if(tutores.size()==0 || dia.equals("Martes") || dia.equals("Jueves") || (dia.equals("Miercoles")&&hora.equals("10:00")) || (dia.equals("Miercoles")&&hora.equals("10:30")))
         {
             texto.setText("No se han encontrado tutores para " + materia + " para el dia " + dia + " a la hora " + hora);
         }

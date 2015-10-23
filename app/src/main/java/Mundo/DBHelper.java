@@ -29,16 +29,17 @@ public class DBHelper extends SQLiteOpenHelper
     {
         String createTableUsuarios = "CREATE TABLE USUARIOS (nombre TEXT PRIMARY KEY, clave TEXT, telefono INTEGER)";
         String createTableMaterias = "CREATE TABLE MATERIAS (id INTEGER PRIMARY KEY AUTOINCREMENT, materia TEXT, usuario TEXT)";
+        String createTableComentarios = "CREATE TABLE COMENTARIOS (id INTEGER PRIMARY KEY AUTOINCREMENT, usuario TEXT, comentario TEXT, calificacion INTEGER)";
         db.execSQL(createTableUsuarios);
         db.execSQL(createTableMaterias);
+        db.execSQL(createTableComentarios);
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
         db.execSQL("DROP TABLE IF EXIST USUARIOS");
         db.execSQL("DROP TABLE IF EXIST MATERIAS");
+        db.execSQL("DROP TABLE IF EXIST COMENTARIOS");
         onCreate(db);
     }
-
-
 }

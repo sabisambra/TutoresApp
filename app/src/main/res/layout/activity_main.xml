@@ -67,4 +67,15 @@
         android:text="Buscar Lugar"
         android:onClick="buscarLugar"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver mis comentarios"
+        android:onClick="verComentariosPropios"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Grupos de Estudio"/>
+
 </LinearLayout>

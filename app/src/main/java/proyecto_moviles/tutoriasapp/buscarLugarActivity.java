@@ -1,9 +1,13 @@
 package proyecto_moviles.tutoriasapp;
 
+import android.app.AlertDialog;
+import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -31,7 +35,6 @@ public class buscarLugarActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buscar_lugar);
         setUpMapIfNeeded();
-
     }
 
     @Override
@@ -63,14 +66,25 @@ public class buscarLugarActivity extends ActionBarActivity {
      */
     private void setUpMapIfNeeded() {
         // Do a null check to confirm that we have not already instantiated the map.
-        if (mMap == null) {
-            // Try to obtain the map from the SupportMapFragment.
-            mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
-                    .getMap();
-            // Check if we were successful in obtaining the map.
-            if (mMap != null) {
-                setUpMap();
+        if(Settings.System.getInt(this.getContentResolver(),Settings.System.AIRPLANE_MODE_ON,0)==0) {
+            if (mMap == null) {
+                // Try to obtain the map from the SupportMapFragment.
+                mMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+                        .getMap();
+                // Check if we were successful in obtaining the map.
+                if (mMap != null) {
+                    setUpMap();
+                }
             }
+        }
+        else
+        {
+            new AlertDialog.Builder(this).setTitle("Sin Conexion").setMessage("No hay conexion, no se puede mostrar nada").setNeutralButton("Cerrar", null).show();
+            //Intent i = new Intent(this,MainActivity.class);
+            //startActivity(i);
+            SupportMapFragment mapa = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map));
+            mapa.onHiddenChanged(true);
+            return;
         }
     }
 

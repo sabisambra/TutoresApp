@@ -11,6 +11,12 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -119,5 +125,29 @@ public class MainActivity extends ActionBarActivity {
     {
         Intent intent = new Intent(this,buscarLugarActivity.class);
         startActivity(intent);
+    }
+
+    public void prueba (View v)
+    {
+        try {
+            DefaultHttpClient client = new DefaultHttpClient();
+            String response = "No ha pasado nada";
+            HttpPost httpPostPrueba = new HttpPost("https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+Sydney&key=AIzaSyAImDRY9IBrB8O42-oiSB0b0y-RZLOqNuU");
+            HttpResponse respuesta = client.execute(new HttpGet("https://maps.googleapis.com/maps/api/place/textsearch/json?query=restaurants+in+Sydney&key=AIzaSyAImDRY9IBrB8O42-oiSB0b0y-RZLOqNuU"));
+            Log.i("Todavia no hay error", response);
+            response = EntityUtils.toString(respuesta.getEntity());
+            Log.i("Ya paso algo",response);
+        }
+        catch(Exception e)
+        {
+            Log.i("ERROR",e.getMessage());
+        }
+    }
+
+    public void verComentariosPropios(View v)
+    {
+        Intent i = new Intent(this,verComentarios.class);
+        i.putExtra("nombre",actual.darNombre());
+        startActivity(i);
     }
 }

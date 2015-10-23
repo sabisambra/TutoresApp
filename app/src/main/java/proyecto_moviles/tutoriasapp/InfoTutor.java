@@ -105,12 +105,18 @@ public class InfoTutor extends ActionBarActivity {
 
     public void verComentarios(View v)
     {
-
+        Intent i = new Intent(this,verComentarios.class);
+        TextView nombre = (TextView)findViewById(R.id.nombreTutor);
+        i.putExtra("nombre",nombre.getText().toString());
+        startActivity(i);
     }
 
     public void agregarComentario(View w)
     {
-
+        Intent i = new Intent(this,agregarComentario.class);
+        TextView nombre = (TextView)findViewById(R.id.nombreTutor);
+        i.putExtra("nombre", nombre.getText().toString());
+        startActivity(i);
     }
 
     public void llamar(View v)

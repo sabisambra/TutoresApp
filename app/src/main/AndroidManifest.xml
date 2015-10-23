@@ -79,6 +79,22 @@
         <activity
             android:name=".buscarLugarActivity"
             android:label="@string/title_activity_buscar_lugar"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="proyecto_moviles.tutoriasapp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".agregarComentario"
+            android:label="@string/title_activity_agregar_comentario"
+            android:parentActivityName=".InfoTutor" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="proyecto_moviles.tutoriasapp.InfoTutor" />
+        </activity>
+        <activity
+            android:name=".verComentarios"
+            android:label="@string/title_activity_ver_comentarios"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
